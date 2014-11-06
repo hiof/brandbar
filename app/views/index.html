@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Test page</title>
+  <script type="text/javascript" src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+</head>
+<body>
+  <h1>Hello World</h1>
+  <script type="text/javascript">
+    $(function(){
+        window.brandOptions = {
+          alignment: 'right',
+          offset: '20%'
+        }
+        $.ajax({
+          type: 'GET',
+          async: false,
+          url: '//hiof.no/assets/plugins/hiof-branding/',
+          success: function(data) {
+
+            var css    = '<link type="text/css" rel="stylesheet" href="' + data.css + '" />',
+                js = '<script type="text/javascript" src="' + data.js + '" />';
+            $('head').append(js);
+            $('head').append(css);
+          }
+        });    
+    });
+  </script>
+</body>
+</html>
