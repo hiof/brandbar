@@ -7,18 +7,14 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     // Tasks
-    less: {
-      standard: {
-        options: {
+    sass: {
+      options: {
 
-        },
-        files: [{
-          expand: true,
-          cwd: 'app/assets/less/',
-          src: ['*.less'],
-          dest: 'build/',
-          ext: '.css'
-        }]
+      },
+      dist: {
+        files: {
+          'build/<%= pkg.name %>.css': 'app/assets/sass/hiof-brandbar.scss',
+        }
       }
     },
     autoprefixer: {
@@ -86,7 +82,7 @@ module.exports = function(grunt) {
         }
       }
     },
-    concat: {   
+    concat: {
       pages: {
         files: {
           'build/index.html': [
@@ -229,7 +225,7 @@ module.exports = function(grunt) {
         }
       }
     },
- 
+
     // grunt-open will open your browser at the project's URL
     open: {
       all: {
@@ -279,8 +275,8 @@ module.exports = function(grunt) {
 
 
 
-  grunt.registerTask('deploy-staging', ['deploy', 'sftp:stage']);
-  grunt.registerTask('deploy-www', ['deploy', 'sftp:prod']);
+  grunt.registerTask('deploy-stage', ['deploy', 'sftp:stage']);
+  grunt.registerTask('deploy-prod', ['deploy', 'sftp:prod']);
 
   // Server tasks
   grunt.registerTask('server', [
